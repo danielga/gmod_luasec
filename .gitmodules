@@ -1,0 +1,3 @@
+[submodule "luasec"]
+	path = luasec
+	url = https://github.com/brunoos/luasec.git
