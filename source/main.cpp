@@ -19,7 +19,7 @@ GMOD_MODULE_OPEN( )
 	{
 		lua_replace( state, 2 );
 		lua_settop( state, 2 );
-		LUA->SetField( -2, "ssl" );
+		LUA->SetField( -2, "context" );
 	}
 
 	if( luaopen_ssl_x509( state ) == 1 )
