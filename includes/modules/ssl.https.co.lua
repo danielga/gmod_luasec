@@ -4,6 +4,7 @@
 --
 -- Author: Pablo Musa
 -- Author: Tomas Guisasola
+-- Coroutines version
 ---------------------------------------------------------------------------
 
 local socket = require("socket") or socket
