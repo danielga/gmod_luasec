@@ -18,20 +18,26 @@ CreateSolution("ssl.core")
 	CreateProject(SERVERSIDE, SOURCES_MANUAL)
 		AddFiles("main.cpp")
 		IncludeLuaShared()
-		links({"luasocket", "core", "context", "x509", "eay32", "ssleay32"})
+		links({"luasocket", "core", "context", "x509"})
 
 		filter("system:windows")
 			libdirs(OPENSSL_FOLDER .. "/lib")
-			links("ws2_32")
+			links({"ws2_32", "libeay32", "ssleay32"})
+
+		filter("system:not windows")
+			pkg_config({"--cflags", "--libs", "openssl"})
 
 	CreateProject(CLIENTSIDE, SOURCES_MANUAL)
 		AddFiles("main.cpp")
 		IncludeLuaShared()
-		links({"luasocket", "core", "context", "x509", "eay32", "ssleay32"})
+		links({"luasocket", "core", "context", "x509"})
 
 		filter("system:windows")
 			libdirs(OPENSSL_FOLDER .. "/lib")
-			links("ws2_32")
+			links({"ws2_32", "libeay32", "ssleay32"})
+
+		filter("system:not windows")
+			pkg_config({"--cflags", "--libs", "openssl"})
 
 	project("luasocket")
 		kind("StaticLib")
