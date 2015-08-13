@@ -25,7 +25,7 @@ CreateSolution("ssl.core")
 			links({"ws2_32", "libeay32", "ssleay32"})
 
 		filter("system:not windows")
-			pkg_config({"--cflags", "--libs", "openssl"})
+			pkg_config({"--cflags", "--static", "--libs", "openssl"})
 
 	CreateProject(CLIENTSIDE, SOURCES_MANUAL)
 		AddFiles("main.cpp")
@@ -37,7 +37,7 @@ CreateSolution("ssl.core")
 			links({"ws2_32", "libeay32", "ssleay32"})
 
 		filter("system:not windows")
-			pkg_config({"--cflags", "--libs", "openssl"})
+			pkg_config({"--cflags", "--static", "--libs", "openssl"})
 
 	project("luasocket")
 		kind("StaticLib")
