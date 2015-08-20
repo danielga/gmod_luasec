@@ -66,6 +66,7 @@ CreateSolution("ssl.core")
 		files(LUASEC_FOLDER .. "/src/ssl.c")
 		vpaths({["Source files"] = LUASEC_FOLDER .. "/src/**.c"})
 		IncludeLuaShared()
+		links("luasocket")
 
 		filter("system:windows")
 			includedirs(OPENSSL_FOLDER .. "/include")
