@@ -29,7 +29,7 @@ GMOD_MODULE_OPEN( )
 		LUA->SetField( -2, "x509" );
 	}
 
-	return 0;
+	return 1;
 }
 
 GMOD_MODULE_CLOSE( )
