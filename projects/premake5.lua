@@ -17,8 +17,8 @@ local OPENSSL_FOLDER = os.get() .. "/OpenSSL"
 CreateSolution("ssl.core")
 	CreateProject(SERVERSIDE, SOURCES_MANUAL)
 		AddFiles("main.cpp")
-		IncludeLuaShared()
 		links({"x509", "context", "core", "luasocket"})
+		IncludeLuaShared()
 
 		filter("system:windows")
 			libdirs(OPENSSL_FOLDER .. "/lib")
@@ -30,8 +30,8 @@ CreateSolution("ssl.core")
 
 	CreateProject(CLIENTSIDE, SOURCES_MANUAL)
 		AddFiles("main.cpp")
-		IncludeLuaShared()
 		links({"x509", "context", "core", "luasocket"})
+		IncludeLuaShared()
 
 		filter("system:windows")
 			libdirs(OPENSSL_FOLDER .. "/lib")
