@@ -25,6 +25,7 @@ CreateSolution("ssl.core")
 			links({"ws2_32", "libeay32", "ssleay32"})
 
 		filter("system:not windows")
+			linkoptions("-Wl,-Bstatic")
 			pkg_config({"--cflags", "--libs", "openssl"})
 
 	CreateProject(CLIENTSIDE, SOURCES_MANUAL)
@@ -37,6 +38,7 @@ CreateSolution("ssl.core")
 			links({"ws2_32", "libeay32", "ssleay32"})
 
 		filter("system:not windows")
+			linkoptions("-Wl,-Bstatic")
 			pkg_config({"--cflags", "--libs", "openssl"})
 
 	project("luasocket")
