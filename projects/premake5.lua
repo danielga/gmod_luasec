@@ -1,12 +1,12 @@
 newoption({
 	trigger = "gmcommon",
-	description = "Sets the path to the garrysmod_common (https://bitbucket.org/danielga/garrysmod_common) directory",
-	value = "path to garrysmod_common dir"
+	description = "Sets the path to the garrysmod_common (https://github.com/danielga/garrysmod_common) directory",
+	value = "path to garrysmod_common directory"
 })
 
 local gmcommon = _OPTIONS.gmcommon or os.getenv("GARRYSMOD_COMMON")
 if gmcommon == nil then
-	error("you didn't provide a path to your garrysmod_common (https://bitbucket.org/danielga/garrysmod_common) directory")
+	error("you didn't provide a path to your garrysmod_common (https://github.com/danielga/garrysmod_common) directory")
 end
 
 include(gmcommon)
@@ -14,9 +14,8 @@ include(gmcommon)
 local LUASEC_FOLDER = "../luasec"
 local OPENSSL_FOLDER = os.get() .. "/OpenSSL"
 
-CreateSolution("ssl.core")
-	CreateProject(SERVERSIDE, SOURCES_MANUAL)
-		AddFiles("main.cpp")
+CreateWorkspace({name = "ssl.core"})
+	CreateProject({serverside = true})
 		links({"x509", "context", "core", "luasocket"})
 		IncludeLuaShared()
 
@@ -28,8 +27,7 @@ CreateSolution("ssl.core")
 			linkoptions("-Wl,-Bstatic")
 			pkg_config({"--cflags", "--libs", "openssl"})
 
-	CreateProject(CLIENTSIDE, SOURCES_MANUAL)
-		AddFiles("main.cpp")
+	CreateProject({serverside = false})
 		links({"x509", "context", "core", "luasocket"})
 		IncludeLuaShared()
 
