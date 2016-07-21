@@ -12,7 +12,7 @@ end
 include(gmcommon)
 
 local LUASEC_FOLDER = "../luasec"
-local OPENSSL_FOLDER = os.get() .. "/OpenSSL"
+local OPENSSL_FOLDER = os.get() .. "/openssl"
 
 CreateWorkspace({name = "ssl.core"})
 	CreateProject({serverside = true})
