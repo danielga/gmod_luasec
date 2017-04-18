@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
--- LuaSec 0.5
--- Copyright (C) 2006-2014 Bruno Silvestre
+-- LuaSec 0.6
+-- Copyright (C) 2006-2016 Bruno Silvestre
 --
 ------------------------------------------------------------------------------
 
@@ -120,7 +120,7 @@ local function wrap(sock, cfg)
    local s, msg = core.create(ctx)
    if s then
       core.setfd(s, sock:getfd())
-      sock:setfd(-1)
+      sock:setfd(core.SOCKET_INVALID)
       registry[s] = ctx
       return s
    end
@@ -169,7 +169,7 @@ core.setmethod("info", info)
 --
 
 local _M = {
-  _VERSION        = "0.5",
+  _VERSION        = "0.6",
   _COPYRIGHT      = core.copyright(),
   loadcertificate = x509.load,
   newcontext      = newcontext,

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------
--- LuaSec 0.5
--- Copyright (C) 2009-2014 PUC-Rio
+-- LuaSec 0.6
+-- Copyright (C) 2009-2016 PUC-Rio
 --
 -- Author: Pablo Musa
 -- Author: Tomas Guisasola
@@ -19,16 +19,16 @@ local try          = socket.try
 -- Module
 --
 local _M = {
-  _VERSION   = "0.5",
-  _COPYRIGHT = "LuaSec 0.5 - Copyright (C) 2009-2014 PUC-Rio",
+  _VERSION   = "0.6",
+  _COPYRIGHT = "LuaSec 0.6 - Copyright (C) 2009-2016 PUC-Rio",
   PORT       = 443,
 }
 
 -- TLS configuration
 local cfg = {
-	protocol = "tlsv1",
-	options  = "all",
-	verify   = "none",
+  protocol = "any",
+  options  = {"all", "no_sslv2", "no_sslv3"},
+  verify   = "none",
 }
 
 --------------------------------------------------------------------
@@ -132,6 +132,7 @@ local function tcp(params)
 			try(connect(self.sock, host, port))
 			self.sock = try(ssl.wrap(self.sock, params))
 			if hasco then try(self.sock:settimeout(0)) end
+			self.sock:sni(host)
 			try(dohandshake(self.sock))
 			reg(self)
 
