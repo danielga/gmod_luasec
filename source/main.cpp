@@ -7,25 +7,25 @@ extern "C" int luaopen_ssl_x509( lua_State *state );
 
 GMOD_MODULE_OPEN( )
 {
-	if( luaopen_ssl_core( LUA->state ) == 1 )
+	if( luaopen_ssl_core( LUA->GetState( ) ) == 1 )
 	{
-		lua_replace( LUA->state, 1 );
-		lua_settop( LUA->state, 1 );
+		lua_replace( LUA->GetState( ), 1 );
+		lua_settop( LUA->GetState( ), 1 );
 		LUA->Push( -1 );
 		LUA->SetField( GarrysMod::Lua::INDEX_GLOBAL, "ssl" );
 	}
 
-	if( luaopen_ssl_context( LUA->state ) == 1 )
+	if( luaopen_ssl_context( LUA->GetState( ) ) == 1 )
 	{
-		lua_replace( LUA->state, 2 );
-		lua_settop( LUA->state, 2 );
+		lua_replace( LUA->GetState( ), 2 );
+		lua_settop( LUA->GetState( ), 2 );
 		LUA->SetField( -2, "context" );
 	}
 
-	if( luaopen_ssl_x509( LUA->state ) == 1 )
+	if( luaopen_ssl_x509( LUA->GetState( ) ) == 1 )
 	{
-		lua_replace( LUA->state, 2 );
-		lua_settop( LUA->state, 2 );
+		lua_replace( LUA->GetState( ), 2 );
+		lua_settop( LUA->GetState( ), 2 );
 		LUA->SetField( -2, "x509" );
 	}
 
